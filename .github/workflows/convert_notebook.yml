@@ -3,7 +3,7 @@ name: Convert Jupyter Notebook to HTML
 on:
   push:
     branches:
-      - master  # Specify your branch
+      - master   # Specify your branch
 
 jobs:
   build:
