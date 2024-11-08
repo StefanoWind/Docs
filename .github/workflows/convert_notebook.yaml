@@ -1,0 +1,37 @@
+name: Convert Jupyter Notebook to HTML
+
+on:
+  push:
+    branches:
+      - main  # Specify your branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9.16'  # Specify Python version
+
+    - name: Install Jupyter
+      run: |
+        pip install nbconvert
+
+    - name: Convert notebook to HTML
+      run: |
+        jupyter nbconvert --to html hello_world.ipynb
+
+    - name: Commit and push HTML file
+      run: |
+        git config --local StefanoWind "GitHub Actions"
+        git config --local stefano.letizia@nrel.gov "actions@github.com"
+        git add hello_world.html
+        git commit -m "Update HTML documentation"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
