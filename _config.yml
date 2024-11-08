@@ -1,0 +1,6 @@
+theme: minima
+title: My Project Documentation
+description: Documentation for my project
+header_pages:
+  - _pages/page1.md
+  - _pages/page2.md
